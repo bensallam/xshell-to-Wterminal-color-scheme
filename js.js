@@ -1,6 +1,9 @@
 function getText(){
+    //custom name
     let nameVal =document.getElementById("themeName").value;
+    //get the textarea
     let        text = document.getElementById("myText").value;
+    // find the value for every color
     let     findB = text.search('black='),
             findR = text.search('red='),
             findG = text.search('green='),
@@ -19,6 +22,7 @@ function getText(){
             findWb = text.search('white[(]b'),
             findBG = text.search('background='),
             findFG = text.search('text='),
+    //format the value
             blackVal = '"' + '#'+text.substring(findB+6, findB+12)+'"' ,
             redVal = '"' + '#'+text.substring(findR+4, findR+10)+'"',
             greenVal = '"' + '#'+text.substring(findG+6, findG+12)+'"',
@@ -37,7 +41,7 @@ function getText(){
             bWhiteVal = '"' + '#'+text.substring(findWb+12, findWb+18)+'"',
             backgroundVal = '"' + '#'+text.substring(findBG+11, findBG+17)+'"',
             foregroundVal = '"' + '#'+text.substring(findFG+5, findFG+11)+'"';
-   
+   //the result table
     const result = `,{
     "name": "${nameVal}",
     "black": ${blackVal},
@@ -60,19 +64,24 @@ function getText(){
     "foreground": ${foregroundVal}
     }
     `
+    //check the text input if it correct
+    //first line
     let start = text.search('\\[');
     if (start === 0){
+        //last line
         let name0 = text.search('name0=');
         let finN0 = text.substring(name0, name0+5);
         if (finN0 === 'name0'){
-
+            //run the script
             document.getElementById("done").innerText = result;
         }
         else {
+        //print error 1
         document.getElementById("done").innerText = 'your xshell color scheme code is not complete'; 
         }
     } 
    else { 
+    //print error 2
     document.getElementById("done").innerText = 'please enter xshell color scheme code your code is wrong';
    }
 }        
